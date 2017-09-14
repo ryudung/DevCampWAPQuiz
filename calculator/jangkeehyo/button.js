@@ -35,54 +35,7 @@ function button(text, name, group, parent, target){
         });
       },
       calculate:function(){
-        var sum = 0;
-        var source = this.target.value;
-
-        var stack = this.makeStack(source);
-        for(var i=0; i<stack.length; i++){
-          if(i===0) {
-            sum += stack[i];
-            continue;
-          }
-
-          if(stack[i]==='+') {
-            sum += stack[i+1];
-            continue;
-          }
-
-          if(stack[i]==='-') {
-            sum -= stack[i+1];
-            continue;
-          }
-
-        }
-        return sum;
-      },
-      makeStack:function(source) {
-        var stack = [];
-        var number ='';
-        for(var i=0; i<source.length; i++){
-          if(i === source.length-1) {
-            number += source[i];
-            stack.push(Number(number));
-          }
-
-          if(!isNaN(Number(source[i]))) {
-            number += source[i];
-            continue;
-          }
-
-          if(source[i]==='+' || source[i]==='-') {
-            stack.push(Number(number));
-            stack.push(source[i]);
-            number='';
-            continue;
-          }
-
-          alert('계산 실패');
-          return [];
-        }
-        return stack;
+        return eval(this.target.value);
       }
   }
 
